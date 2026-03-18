@@ -14,14 +14,25 @@ public class CANdleSys extends SubsystemBase {
     private CANdle candle;
 
     public CANdleSys() {
+        
+        System.out.println("CANdle init");
 
         candle = new CANdle(CANdleConstants.CANdleport);
 
+        configAll.vBatOutputMode = VBatOutputMode.Modulated;
+        configAll.stripType = LEDStripType.RGB;
 
+        System.out.println("CANdle init end");
     }
 
     public void setColorAll(int[] rgb) {
         candle.setLEDs(rgb[0],rgb[1],rgb[2]);
+        candle.modulateVBatOutput(0.9);
     }
+
+    public void setLEDOff() {
+        candle.setLEDs(0, 0, 0);
+        candle.modulateVBatOutput(0);
+      }
 }
 
