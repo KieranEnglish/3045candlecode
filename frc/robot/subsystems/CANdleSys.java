@@ -1,7 +1,6 @@
 
 package frc.robot.subsystems;
 
-import javax.lang.model.util.ElementScanner14;
 
 import com.ctre.phoenix.led.CANdle;
 import com.ctre.phoenix.led.CANdleConfiguration;
@@ -13,7 +12,10 @@ import frc.robot.Constants.CANdleConstants;
 
 public class CANdleSys extends SubsystemBase {
 
-    private CANdle candle;
+    private final CANdle candle;
+
+    // find if hood angle is correct and find if drum is fully up to speed
+
 
     public CANdleSys() {
         
@@ -39,7 +41,7 @@ public class CANdleSys extends SubsystemBase {
     }
 
     public void setColorRed(int[] rgb) {
-        candle.setLEDs(150,20,50);
+        candle.setLEDs(200,20,20);
         candle.modulateVbatOutput(0.9);
     }
 
@@ -50,10 +52,10 @@ public class CANdleSys extends SubsystemBase {
 
 
     public void fireCheck() {
-        if (angleRight && speedRight) {
-            setColorGrn(rgb);
-        } else {
+        if (inPos = true && speedSet = true) {
             setColorRed(rgb);
+        } else {
+            setColorGrn(rgb);
         }
 
 
