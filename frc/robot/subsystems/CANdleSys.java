@@ -1,6 +1,8 @@
 
 package frc.robot.subsystems;
 
+import javax.lang.model.util.ElementScanner14;
+
 import com.ctre.phoenix.led.CANdle;
 import com.ctre.phoenix.led.CANdleConfiguration;
 import com.ctre.phoenix.led.CANdle.LEDStripType;
@@ -19,20 +21,44 @@ public class CANdleSys extends SubsystemBase {
 
         candle = new CANdle(CANdleConstants.CANdleport);
 
-        configAll.vBatOutputMode = VBatOutputMode.Modulated;
+        CANdleConfiguration configAll = new CANdleConfiguration();
+        configAll.statusLedOffWhenActive = false;
+        configAll.disableWhenLOS = false;
         configAll.stripType = LEDStripType.RGB;
+        configAll.brightnessScalar = 0.1;
+        configAll.vBatOutputMode = VBatOutputMode.Modulated;
+        candle.configAllSettings(configAll, 100);
+    
 
         System.out.println("CANdle init end");
     }
 
-    public void setColorAll(int[] rgb) {
-        candle.setLEDs(rgb[0],rgb[1],rgb[2]);
+    public void setColorGrn(int[] rgb) {
+        candle.setLEDs(10,165,35);
         candle.modulateVBatOutput(0.9);
     }
 
-    public void setLEDOff() {
+    public void setColorRed(int[] rgb) {
+        candle.setLEDs(150,20,50);
+        candle.modulateVbatOutput(0.9);
+    }
+
+    public void setLEDOff(int[] rgb) {
         candle.setLEDs(0, 0, 0);
         candle.modulateVBatOutput(0);
       }
+
+
+    public void fireCheck() {
+        if (angleRight && speedRight) {
+            setColorGrn(rgb);
+        } else {
+            setColorRed(rgb);
+        }
+
+
+
+    }
 }
+
 
