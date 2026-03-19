@@ -15,7 +15,7 @@ public class CANdleSys extends SubsystemBase {
     private final CANdle candle;
 
     // find if hood angle is correct and find if drum is fully up to speed
-
+    
 
     public CANdleSys() {
         
@@ -61,6 +61,5 @@ public class CANdleSys extends SubsystemBase {
 
 
     }
+
 }
-
-
